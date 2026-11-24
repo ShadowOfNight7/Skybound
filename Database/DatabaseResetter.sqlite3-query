@@ -1,0 +1,24 @@
+-- database: Database.db
+DROP TABLE IF EXISTS userData;
+
+CREATE TABLE
+    userData (
+        playerUUID TEXT NOT NULL PRIMARY KEY,
+        displayName TEXT NOT NULL,
+        timeLastPulled TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+
+CREATE TRIGGER update_timeLastPulled AFTER
+UPDATE ON userData FOR EACH ROW BEGIN
+UPDATE userData
+SET
+    timeLastPulled = CURRENT_TIMESTAMP
+WHERE
+    playerUUID = NEW.playerUUID;
+
+END;
+
+INSERT INTO
+    userData (playerUUID, timeLastPulled)
+VALUES
+    ('1', 100000000000000);

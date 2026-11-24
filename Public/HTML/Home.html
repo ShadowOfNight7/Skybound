@@ -1,0 +1,26 @@
+<nav>
+    <h1>SkyTracker</h1>
+    <ul class="topnav">
+        <li><a href="#">Home</a></li>
+    </ul>
+    <form onsubmit="">
+        <label for="playerNameField">Search for a player's IGN</label><br>
+        <input type="text" id="playerNameField"><br>
+        <label for="playerNameFieldSubmitButton">Search</label><br>
+        <input type="submit" id="playerNameFieldSubmitButton"><br>
+    </form>
+</nav>
+<!-- <script type="module" ,src="../JS/RequestHypixelAPI.js"> -->
+
+<script type="module">
+    console.log("hi")
+    import { RequestHypixelAPI } from "../JS/RequestHypixelAPI.js";
+
+    RequestHypixelAPI("skyblock/profiles", "155e9b86-1697-428b-8ba3-c91c58af8a5d")
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+</script>
